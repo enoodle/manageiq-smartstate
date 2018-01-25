@@ -37,6 +37,8 @@ module WebDAV
     case response
     when Net::HTTPOK
       return true
+    when Net::HTTPMethodNotAllowed # some servers return this for directories
+      return true
     when Net::HTTPNotFound
       return false
     else
